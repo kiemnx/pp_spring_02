@@ -1,4 +1,4 @@
-package vn.plusplus.spring;
+package vn.plusplus.spring.threading;
 
 public class ThreadImplement implements Runnable {
     Main main;
