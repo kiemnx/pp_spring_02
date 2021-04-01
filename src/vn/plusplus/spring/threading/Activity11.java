@@ -1,4 +1,4 @@
-package vn.plusplus.spring;
+package vn.plusplus.spring.threading;
 
 public class Activity11 {
     public static int maxNt = 1;
