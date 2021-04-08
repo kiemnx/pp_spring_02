@@ -1,4 +1,4 @@
-package vn.plusplus.spring.pingpong;
+package vn.plusplus.spring.threading.pingpong;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

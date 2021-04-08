@@ -1,4 +1,4 @@
-package vn.plusplus.spring.activity12;
+package vn.plusplus.spring.threading.activity12;
 
 public class Activity2 {
     public static void main(String[] args) {

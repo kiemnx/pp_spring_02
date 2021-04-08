@@ -1,4 +1,4 @@
-package vn.plusplus.spring.activity3;
+package vn.plusplus.spring.threading.activity3;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;

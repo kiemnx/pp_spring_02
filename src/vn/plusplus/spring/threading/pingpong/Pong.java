@@ -1,4 +1,4 @@
-package vn.plusplus.spring.pingpong;
+package vn.plusplus.spring.threading.pingpong;
 
 import javax.swing.*;
 import java.awt.*;
