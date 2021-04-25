@@ -1,14 +1,20 @@
 package vn.plusplus.spring.controller;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import vn.plusplus.spring.controller.request.LoginRequest;
+import vn.plusplus.spring.services.UserInterface;
+import vn.plusplus.spring.services.UserService;
+import vn.plusplus.spring.services.UserService2;
 
 import java.util.Date;
 
 @RestController
 @RequestMapping(value = "/home")
 public class HomeController {
+
+    @Autowired
+    UserService userService;
 
     @GetMapping(value = "/news/{newId}")
     public String getNewsById(@PathVariable(value = "newId") Integer newId){
@@ -20,6 +26,7 @@ public class HomeController {
     public String getNewByParams(@RequestParam(value = "id") Integer newId,
                                  @RequestParam(value = "language") String lang){
         //truy van database lay chi tiet bai bao co id = newId
+        System.out.println();
         return "Content news get by params: " + newId + " language: " + lang;
     }
 
@@ -41,16 +48,9 @@ public class HomeController {
     }
 
     @PostMapping(value = "/login")
-    public LoginRequest login(@RequestBody LoginRequest request){
-        String hardUser = "kiemnx";
-        String hardPass = "123456";
-
-        if(request.getPassword().equals(hardPass) && request.getUserName().equals(hardUser)){
-            request.setPassword("xxxxxx");
-            return request;
-        } else {
-            return request;
-        }
+    public String login(@RequestBody LoginRequest request){
+        String result = userService.login(request);
+        return result;
     }
     @PutMapping(value = "/login")
     public LoginRequest loginPut(@RequestBody LoginRequest request){
@@ -71,8 +71,3 @@ public class HomeController {
     }
 }
 
-@Getter @Setter
-class LoginRequest{
-    private String userName;
-    private String password;
-}
