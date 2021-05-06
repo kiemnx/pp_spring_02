@@ -20,6 +20,11 @@ public class BookService {
 
     public BookListResponse getBookByCategoryID(Integer cateId, String order, String orderBy){
         BookListResponse response = new BookListResponse();
+        if(!order.equals("ASC") || !order.equals("DESC")){
+            response.setCode(-1);
+            response.setMessage("Order value is not valid");
+            return response;
+        }
         List<BookEntity> data = null;
         String sql = "SELECT * FROM book WHERE category_id="+cateId+" ORDER BY "+orderBy+" "+order+";";
         try {
