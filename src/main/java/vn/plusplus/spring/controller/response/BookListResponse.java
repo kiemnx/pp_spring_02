@@ -2,7 +2,7 @@ package vn.plusplus.spring.controller.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import vn.plusplus.spring.model.BookEntity;
+import vn.plusplus.spring.entity.BookEntity;
 
 import java.util.List;
 

@@ -14,7 +14,7 @@ import java.sql.Statement;
 @Service
 public class UserService{
 
-    @Autowired
+//    @Autowired
     Connection connection;
 
     public String login(LoginRequest request){

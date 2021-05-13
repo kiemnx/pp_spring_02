@@ -1,3 +1,4 @@
+/*
 package vn.plusplus.spring.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -36,3 +37,4 @@ public class ConnectionConfig {
         return new RestTemplate();
     }
 }
+*/
