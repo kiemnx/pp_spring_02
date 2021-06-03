@@ -22,7 +22,7 @@ public class HomeController {
 
     int currentId = 2;
 
-    @GetMapping(value = {"/", "/index"})
+//    @GetMapping(value = {"/", "/index"})
     public String index(Model model){
         model.addAttribute("message", "Xin chao cac ban");
         return "index";

@@ -16,8 +16,8 @@ public class UserController {
 
     @PostMapping(value = "/register")
     public String register(@RequestBody RegisterRequest request){
-        String result = userService.register(request);
-        return result;
+        userService.register(request.getPhone(), request.getPass());
+        return "OK";
     }
 
     @PostMapping(value = "/login")
