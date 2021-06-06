@@ -1,5 +1,7 @@
 package vn.plusplus.spring.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @RequestMapping(value = "/security")
 public class TokeSecurity {
 
+    private static final Logger logger = LoggerFactory.getLogger(TokeSecurity.class);
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -24,12 +27,15 @@ public class TokeSecurity {
 
     @PostMapping(value = "/login")
     public String login(@RequestBody LoginRequest loginRequest){
+        logger.info("========== Start received request username {}, password {}", loginRequest.getUserName(), loginRequest.getPassword());
         UserEntity userEntity = userRepository.findUserByUserName(loginRequest.getUserName());
         if(userEntity == null){
+            logger.error("Username {} is not found", loginRequest.getUserName());
             throw new RuntimeException("Not found");
         }
         boolean check = bCryptPasswordEncoder.matches(loginRequest.getPassword(), userEntity.getPassword());
         if(!check){
+            logger.error("Password {} not match with username {}", loginRequest.getPassword(), loginRequest.getUserName());
             throw new RuntimeException("Login error");
         }
 
@@ -38,6 +44,7 @@ public class TokeSecurity {
         Timestamp expired = new Timestamp(System.currentTimeMillis() + expiredTime * 1000);
         userEntity.setExpiredTime(expired);
         userRepository.save(userEntity);
+        logger.info("======== End request login with username {}", loginRequest.getUserName());
         return token;
     }
 

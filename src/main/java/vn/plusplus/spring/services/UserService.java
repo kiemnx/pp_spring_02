@@ -90,10 +90,13 @@ public class UserService implements UserDetailsService {
     }
     public void register(String username, String password){
 //        bCryptPasswordEncoder.matches("abc@1234", "$2a$10$S3Yi.G5M.2iQuaWP5xOUSOALq1CNTR0BxhtOwMMIT/zxLqGTpoQGq");
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(username);
-        userEntity.setPassword(bCryptPasswordEncoder.encode(password));
-        userEntity.setRole("ROLE_USER");
-        userRepository.save(userEntity);
+        if(CheckEmail.checkEmail(username)) {
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUserName(username);
+
+            userEntity.setPassword(bCryptPasswordEncoder.encode(password));
+            userEntity.setRole("ROLE_USER");
+            userRepository.save(userEntity);
+        }
     }
 }
