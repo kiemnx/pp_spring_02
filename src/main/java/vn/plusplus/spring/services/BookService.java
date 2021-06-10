@@ -3,6 +3,7 @@ package vn.plusplus.spring.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import vn.plusplus.spring.controller.request.AddBookRequest;
 import vn.plusplus.spring.controller.request.UpdateBookRequest;
@@ -99,6 +100,17 @@ public class BookService {
             Integer id = (Integer) ob[0];
             String title = String.valueOf(ob[1]);
         }
+    }
+
+    @Async
+    public void testAsync(){
+        System.out.println(Thread.currentThread().getName() + " execute on: " + System.currentTimeMillis()/1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + " execute on: " + System.currentTimeMillis()/1000);
     }
 }
 

@@ -1,6 +1,7 @@
 package vn.plusplus.spring.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -99,4 +100,5 @@ public class UserService implements UserDetailsService {
             userRepository.save(userEntity);
         }
     }
+
 }
