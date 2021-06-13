@@ -1,0 +1,28 @@
+@startuml
+
+participant Client as client
+participant Interceptor as interceptor
+participant AuthenService as authen
+participant BookController as controller
+participant BookService as bookService
+participant Database as db
+
+
+client -> interceptor: callGetBookByCateId()
+interceptor -> interceptor: get token from header
+interceptor -> authen: getUserInfoFromToken(String token)
+alt success case
+    authen --> interceptor: userInfo, role
+    interceptor -> controller: getBookByByCateId controller
+    controller -> bookService: getBookByByCateId(int cateId)
+    bookService -> db: findAllByCateId(int cateId)
+    db --> bookService: List<BookEntity> books
+    bookService --> controller: books
+    controller -> interceptor: books
+    interceptor --> client: books
+else fail
+    authen --> interceptor: exception
+    interceptor --> client: exception
+end
+
+@enduml
